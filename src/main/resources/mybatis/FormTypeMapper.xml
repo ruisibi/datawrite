@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruisitech.bi.mapper.form.FormTypeMapper">
+    <resultMap id="BaseResultMap" type="com.ruisitech.bi.entity.form.FormType">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="text" property="text"/>
+        <result column="note" property="note"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_date" property="createDate"/>
+        <result column="ord" property="ord"/>
+        <result column="update_date" property="updateDate"/>
+    </resultMap>
+
+    <select id="listcataTree" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select id, name , name as "text",  'glyphicon glyphicon-stats' as "icon", ord
+        from dw_form_type
+        order by ord
+    </select>
+
+    <insert id="insertType" parameterType="com.ruisitech.bi.entity.form.FormType">
+        insert into dw_form_type(id, name, note, create_user, create_date, update_date, ord)
+        values(#{id}, #{name}, #{note}, #{createUser},
+        <if test="dbName == 'mysql'">
+            now(), now()
+        </if>
+        <if test="dbName == 'oracle'">
+            sysdate, sysdate
+        </if>
+        <if test="dbName == 'sqlser'">
+            getdate(), getdate()
+        </if>
+        <if test="dbName == 'db2'">
+            current timestamp, current timestamp
+        </if>
+        <if test="dbName == 'psql' ">
+            current_timestamp, current_timestamp
+        </if>
+        <if test="dbName == 'sqlite'">
+            strftime('%s','now') * 1000, strftime('%s','now') * 1000
+        </if>
+        <if test="dbName == 'dm'">
+            sysdate(), sysdate()
+        </if>
+        ,
+        #{ord})
+    </insert>
+
+    <update id="updateType" parameterType="com.ruisitech.bi.entity.form.FormType">
+		update dw_form_type set name=#{name}, note=#{note}, ord=#{ord}, update_date =
+        <if test="dbName == 'mysql'">
+            now()
+        </if>
+        <if test="dbName == 'oracle'">
+            sysdate
+        </if>
+        <if test="dbName == 'sqlser'">
+            getdate()
+        </if>
+        <if test="dbName == 'db2'">
+            current timestamp
+        </if>
+        <if test="dbName == 'psql' ">
+            current_timestamp
+        </if>
+        <if test="dbName == 'sqlite'">
+            strftime('%s','now') * 1000
+        </if>
+        <if test="dbName == 'dm'">
+            sysdate()
+        </if>
+		where id=#{id}
+	</update>
+
+    <delete id="deleleType">
+		delete from  dw_form_type where id= #{id}
+	</delete>
+
+    <select id="getType" resultMap="BaseResultMap">
+		select id , name , note , ord  from dw_form_type where id = #{id}
+	</select>
+
+    <select id="cntReport" resultType="java.lang.Integer" >
+		select count(1) cnt from dw_form_meta where cata_id = #{id}
+	</select>
+</mapper>

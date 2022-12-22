@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruisitech.bi.mapper.form.FormMetaMapper" >
+  <resultMap id="BaseResultMap" type="com.ruisitech.bi.entity.form.FormMeta" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="table_name" property="tableName" jdbcType="VARCHAR" />
+    <result column="table_note" property="tableNote" jdbcType="VARCHAR" />
+    <result column="table_desc" property="tableDesc" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="cata_id" property="cataId" />
+    <result column="table_cfg" property="tableCfg" />
+    <result column="version" property="version" />
+    <result column="build_date" property="buildDate" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, table_name, table_note, table_desc, create_user, create_date, update_date, version, build_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />, cata_id, table_cfg
+    from dw_form_meta
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="listWirteForms" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />, cata_id
+    from dw_form_meta where version = 1
+    <if test="typeId != null and typeId.length > 0" >
+      and cata_id = #{typeId}
+    </if>
+    order by create_date desc
+  </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dw_form_meta
+    where 1=1
+    <if test="cataId != null and cataId.length > 0" >
+      and cata_id = #{cataId}
+    </if>
+    order by create_date desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dw_form_meta
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ruisitech.bi.entity.form.FormMeta" >
+    insert into dw_form_meta (id, table_name, table_note,
+      table_desc, create_user, create_date,
+      update_date, cata_id, table_cfg, version, build_date)
+    values (#{id,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{tableNote,jdbcType=VARCHAR},
+      #{tableDesc,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+      #{updateDate,jdbcType=TIMESTAMP}, #{cataId}, #{tableCfg}, #{version}, #{buildDate})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruisitech.bi.entity.form.FormMeta" >
+    insert into dw_form_meta
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tableName != null" >
+        table_name,
+      </if>
+      <if test="tableNote != null" >
+        table_note,
+      </if>
+      <if test="tableDesc != null" >
+        table_desc,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="cataId != null" >
+        cata_id,
+      </if>
+      <if test="tableCfg != null" >
+        table_cfg,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="buildDate != null" >
+        build_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNote != null" >
+        #{tableNote,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDesc != null" >
+        #{tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cataId != null" >
+        #{cataId},
+      </if>
+      <if test="tableCfg != null" >
+        #{tableCfg},
+      </if>
+      <if test="version != null" >
+        #{version},
+      </if>
+      <if test="buildDate != null" >
+        #{buildDate},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruisitech.bi.entity.form.FormMeta" >
+    update dw_form_meta
+    <set >
+      <if test="tableName != null" >
+        table_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNote != null" >
+        table_note = #{tableNote,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDesc != null" >
+        table_desc = #{tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cataId != null" >
+        cata_id = #{cataId},
+      </if>
+      <if test="tableCfg != null" >
+        table_cfg = #{tableCfg},
+      </if>
+      <if test="version != null" >
+        version = #{version},
+      </if>
+      <if test="buildDate != null" >
+        build_date = #{buildDate},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruisitech.bi.entity.form.FormMeta" >
+    update dw_form_meta
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      table_note = #{tableNote,jdbcType=VARCHAR},
+      table_desc = #{tableDesc,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      cata_id = #{cataId},
+      table_cfg = #{tableCfg},
+      version = #{version},
+      build_date = #{buildDate}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

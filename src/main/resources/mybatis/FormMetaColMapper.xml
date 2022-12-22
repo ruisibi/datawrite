@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruisitech.bi.mapper.form.FormMetaColMapper" >
+  <resultMap id="BaseResultMap" type="com.ruisitech.bi.entity.form.FormMetaCol" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="col_name" property="colName" jdbcType="VARCHAR" />
+    <result column="col_type" property="colType" jdbcType="VARCHAR" />
+    <result column="col_length" property="colLength" jdbcType="INTEGER" />
+    <result column="col_note" property="colNote" jdbcType="VARCHAR" />
+    <result column="col_ord" property="colOrd" jdbcType="INTEGER" />
+    <result column="table_id" property="tableId" jdbcType="VARCHAR" />
+    <result column="expression" property="expression" jdbcType="VARCHAR" />
+    <result column="input_type" property="inputType" jdbcType="VARCHAR" />
+    <result column="defvalue" property="defvalue" jdbcType="VARCHAR" />
+    <result column="col_desc" property="colDesc" jdbcType="VARCHAR" />
+    <result column="options" property="options" jdbcType="VARCHAR" />
+    <result column="valuestype" property="valuestype" jdbcType="VARCHAR" />
+    <result column="match_table" property="matchTable" jdbcType="VARCHAR" />
+    <result column="match_col" property="matchCol" jdbcType="VARCHAR" />
+    <result column="use_col" property="useCol" jdbcType="VARCHAR" />
+    <result column="update_col" property="updateCol" jdbcType="VARCHAR" />
+    <result column="t_condition" property="tCondition" jdbcType="VARCHAR" />
+    <result column="match_col_text" property="matchColText" jdbcType="VARCHAR" />
+    <result column="income_tname" property="incomeTname" jdbcType="VARCHAR" />
+    <result column="col_scale" property="colScale" jdbcType="INTEGER" />
+    <result column="required" property="required" jdbcType="INTEGER" />
+    <result column="search_col" property="searchCol" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="comp_type" property="compType" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, col_name, col_type, col_length, col_note, col_ord, table_id, expression, input_type,
+    defvalue, col_desc, options, valuestype, match_table, match_col, use_col, update_col,
+    t_condition, match_col_text, income_tname, col_scale, required, search_col, create_user,
+    create_date, update_date, comp_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dw_form_meta_col
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByTableId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from dw_form_meta_col
+    where table_id = #{tableId}
+    order by col_ord
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dw_form_meta_col
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByTableId" parameterType="java.lang.String" >
+    delete from dw_form_meta_col
+    where table_id = #{tableId}
+  </delete>
+  <insert id="insert" parameterType="com.ruisitech.bi.entity.form.FormMetaCol" >
+    insert into dw_form_meta_col (id, col_name, col_type,
+      col_length, col_note, col_ord,
+      table_id, expression, input_type,
+      defvalue, col_desc, options,
+      valuestype, match_table, match_col,
+      use_col, update_col, t_condition,
+      match_col_text, income_tname, col_scale,
+      required, search_col, create_user,
+      create_date, update_date, comp_type)
+    values (#{id,jdbcType=VARCHAR}, #{colName,jdbcType=VARCHAR}, #{colType,jdbcType=VARCHAR},
+      #{colLength,jdbcType=INTEGER}, #{colNote,jdbcType=VARCHAR}, #{colOrd,jdbcType=INTEGER},
+      #{tableId,jdbcType=VARCHAR}, #{expression,jdbcType=VARCHAR}, #{inputType,jdbcType=VARCHAR},
+      #{defvalue,jdbcType=VARCHAR}, #{colDesc,jdbcType=VARCHAR}, #{options,jdbcType=VARCHAR},
+      #{valuestype,jdbcType=VARCHAR}, #{matchTable,jdbcType=VARCHAR}, #{matchCol,jdbcType=VARCHAR},
+      #{useCol,jdbcType=VARCHAR}, #{updateCol,jdbcType=VARCHAR}, #{tCondition,jdbcType=VARCHAR},
+      #{matchColText,jdbcType=VARCHAR}, #{incomeTname,jdbcType=VARCHAR}, #{colScale,jdbcType=INTEGER},
+      #{required,jdbcType=INTEGER}, #{searchCol,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{compType})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruisitech.bi.entity.form.FormMetaCol" >
+    insert into dw_form_meta_col
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="colName != null" >
+        col_name,
+      </if>
+      <if test="colType != null" >
+        col_type,
+      </if>
+      <if test="colLength != null" >
+        col_length,
+      </if>
+      <if test="colNote != null" >
+        col_note,
+      </if>
+      <if test="colOrd != null" >
+        col_ord,
+      </if>
+      <if test="tableId != null" >
+        table_id,
+      </if>
+      <if test="expression != null" >
+        expression,
+      </if>
+      <if test="inputType != null" >
+        input_type,
+      </if>
+      <if test="defvalue != null" >
+        defvalue,
+      </if>
+      <if test="colDesc != null" >
+        col_desc,
+      </if>
+      <if test="options != null" >
+        options,
+      </if>
+      <if test="valuestype != null" >
+        valuestype,
+      </if>
+      <if test="matchTable != null" >
+        match_table,
+      </if>
+      <if test="matchCol != null" >
+        match_col,
+      </if>
+      <if test="useCol != null" >
+        use_col,
+      </if>
+      <if test="updateCol != null" >
+        update_col,
+      </if>
+      <if test="tCondition != null" >
+        t_condition,
+      </if>
+      <if test="matchColText != null" >
+        match_col_text,
+      </if>
+      <if test="incomeTname != null" >
+        income_tname,
+      </if>
+      <if test="colScale != null" >
+        col_scale,
+      </if>
+      <if test="required != null" >
+        required,
+      </if>
+      <if test="searchCol != null" >
+        search_col,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="compType != null" >
+        comp_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null" >
+        #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colType != null" >
+        #{colType,jdbcType=VARCHAR},
+      </if>
+      <if test="colLength != null" >
+        #{colLength,jdbcType=INTEGER},
+      </if>
+      <if test="colNote != null" >
+        #{colNote,jdbcType=VARCHAR},
+      </if>
+      <if test="colOrd != null" >
+        #{colOrd,jdbcType=INTEGER},
+      </if>
+      <if test="tableId != null" >
+        #{tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="expression != null" >
+        #{expression,jdbcType=VARCHAR},
+      </if>
+      <if test="inputType != null" >
+        #{inputType,jdbcType=VARCHAR},
+      </if>
+      <if test="defvalue != null" >
+        #{defvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="colDesc != null" >
+        #{colDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="options != null" >
+        #{options,jdbcType=VARCHAR},
+      </if>
+      <if test="valuestype != null" >
+        #{valuestype,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTable != null" >
+        #{matchTable,jdbcType=VARCHAR},
+      </if>
+      <if test="matchCol != null" >
+        #{matchCol,jdbcType=VARCHAR},
+      </if>
+      <if test="useCol != null" >
+        #{useCol,jdbcType=VARCHAR},
+      </if>
+      <if test="updateCol != null" >
+        #{updateCol,jdbcType=VARCHAR},
+      </if>
+      <if test="tCondition != null" >
+        #{tCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="matchColText != null" >
+        #{matchColText,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeTname != null" >
+        #{incomeTname,jdbcType=VARCHAR},
+      </if>
+      <if test="colScale != null" >
+        #{colScale,jdbcType=INTEGER},
+      </if>
+      <if test="required != null" >
+        #{required,jdbcType=INTEGER},
+      </if>
+      <if test="searchCol != null" >
+        #{searchCol,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compType != null" >
+        #{compType},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruisitech.bi.entity.form.FormMetaCol" >
+    update dw_form_meta_col
+    <set >
+      <if test="colName != null" >
+        col_name = #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colType != null" >
+        col_type = #{colType,jdbcType=VARCHAR},
+      </if>
+      <if test="colLength != null" >
+        col_length = #{colLength,jdbcType=INTEGER},
+      </if>
+      <if test="colNote != null" >
+        col_note = #{colNote,jdbcType=VARCHAR},
+      </if>
+      <if test="colOrd != null" >
+        col_ord = #{colOrd,jdbcType=INTEGER},
+      </if>
+      <if test="tableId != null" >
+        table_id = #{tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="expression != null" >
+        expression = #{expression,jdbcType=VARCHAR},
+      </if>
+      <if test="inputType != null" >
+        input_type = #{inputType,jdbcType=VARCHAR},
+      </if>
+      <if test="defvalue != null" >
+        defvalue = #{defvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="colDesc != null" >
+        col_desc = #{colDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="options != null" >
+        options = #{options,jdbcType=VARCHAR},
+      </if>
+      <if test="valuestype != null" >
+        valuestype = #{valuestype,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTable != null" >
+        match_table = #{matchTable,jdbcType=VARCHAR},
+      </if>
+      <if test="matchCol != null" >
+        match_col = #{matchCol,jdbcType=VARCHAR},
+      </if>
+      <if test="useCol != null" >
+        use_col = #{useCol,jdbcType=VARCHAR},
+      </if>
+      <if test="updateCol != null" >
+        update_col = #{updateCol,jdbcType=VARCHAR},
+      </if>
+      <if test="tCondition != null" >
+        t_condition = #{tCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="matchColText != null" >
+        match_col_text = #{matchColText,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeTname != null" >
+        income_tname = #{incomeTname,jdbcType=VARCHAR},
+      </if>
+      <if test="colScale != null" >
+        col_scale = #{colScale,jdbcType=INTEGER},
+      </if>
+      <if test="required != null" >
+        required = #{required,jdbcType=INTEGER},
+      </if>
+      <if test="searchCol != null" >
+        search_col = #{searchCol,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compType != null" >
+        comp_type = #{compType},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruisitech.bi.entity.form.FormMetaCol" >
+    update dw_form_meta_col
+    set col_name = #{colName,jdbcType=VARCHAR},
+      col_type = #{colType,jdbcType=VARCHAR},
+      col_length = #{colLength,jdbcType=INTEGER},
+      col_note = #{colNote,jdbcType=VARCHAR},
+      col_ord = #{colOrd,jdbcType=INTEGER},
+      table_id = #{tableId,jdbcType=VARCHAR},
+      expression = #{expression,jdbcType=VARCHAR},
+      input_type = #{inputType,jdbcType=VARCHAR},
+      defvalue = #{defvalue,jdbcType=VARCHAR},
+      col_desc = #{colDesc,jdbcType=VARCHAR},
+      options = #{options,jdbcType=VARCHAR},
+      valuestype = #{valuestype,jdbcType=VARCHAR},
+      match_table = #{matchTable,jdbcType=VARCHAR},
+      match_col = #{matchCol,jdbcType=VARCHAR},
+      use_col = #{useCol,jdbcType=VARCHAR},
+      update_col = #{updateCol,jdbcType=VARCHAR},
+      t_condition = #{tCondition,jdbcType=VARCHAR},
+      match_col_text = #{matchColText,jdbcType=VARCHAR},
+      income_tname = #{incomeTname,jdbcType=VARCHAR},
+      col_scale = #{colScale,jdbcType=INTEGER},
+      required = #{required,jdbcType=INTEGER},
+      search_col = #{searchCol,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      comp_type = #{compType}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

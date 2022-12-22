@@ -1,0 +1,122 @@
+#####################################系统信息################################
+rsbi:
+  name: 睿思云数据填报系统
+  version: 企业版
+  versionNumber: 1.0
+  lastupdate: 2022-6-1
+  net: https://www.ruisitech.com
+  upFilePath: /Users/huangqin/workSpace/upfiles/ #上传文件路径
+  userPartition: false  #是否开启用户隔离， 用户只能看到自己创建表，模型，报表，仪表盘等 和 管理员授权给他的表
+
+##端口配置
+server:
+  port: 8082
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+#数据库连接 mysql
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbType: mysql #定义支撑库类型
+    druid:
+      master:  # 支持库
+        url: jdbc:mysql://localhost:3306/rsbi_datawrite?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+        username: root
+        password: 12345678
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        initialSize: 5
+        minIdle: 10
+        maxActive: 50
+        maxWait: 60000
+      tables:  #填报表存放库
+        url: jdbc:mysql://localhost:3306/rsbi?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+        username: root
+        password: 12345678
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        initialSize: 5
+        minIdle: 10
+        maxActive: 50
+        maxWait: 60000
+  #redis配置
+  redis:
+    port: 6379
+    database: 0
+    host: localhost
+    password:
+    jedis:
+      pool:
+        max-active: 100
+        max-wait: 1000ms
+        max-idle: 200
+        min-idle: 0
+    timeout: 5000ms
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+#mybatis:
+  #mapper配置文件
+#  mapper-locations: classpath:mybatis/*.xml,classpath:mybatis/**/*.xml
+#logging:
+#  config: classpath:log4j.properties
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: false  #开启优化，如果开启优化，在分页页码结果没有数据的时候,会显示有数据的页码数据
+  supportMethodsArguments: true #是否支持接口参数来传递分页参数，默认false
+  pageSizeZero: true #pageSize=0 返回所有
+  params: count=countSql
+
+#######################################发送邮件配置###############################################
+#发邮件的服务器地址
+mail:
+  host: smtp.163.com
+  #端口
+  port: 25
+  #发邮件账号
+  userName:
+  #发邮件密码
+  password:
+
+################################sso 配置信息 ###############################################
+#根据登录账号获取用户信息，可不配
+sso:
+  url:
+    userInfo:
+      bystaff:
+      #根据TOKEN获取用户信息，必须配置
+      bytoken: https://www.ruisitech.com/user.json
+      #获取需要整合系统的用户列表，可不配
+    userList:
+################################elasticsearch ###############################################
+elasticsearch:
+  url: http://yun.ruisitech.com
+  username: elastic
+  password: 123456
+  version: 6   #指定 elasticsearch 的 版本， 5/6/7/8/9 等
+
+#微信配置
+wx:
+  appID: wxe9ded978704a6660
+  appSecret:
+
+##########################
+# ftp相关，用来存储上传的文件，解决tomcat集群上传文件问题
+# ######################
+dfs:
+  ftp:
+    use: false
+    host: 192.168.1.7
+    port: 21
+    user: hq
+    password: 123456
+  nginx:
+    #nginx访问ftp文件的IP
+    host: http://192.168.1.7
