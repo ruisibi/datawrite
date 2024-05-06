@@ -13,7 +13,7 @@
 7.手机端填报 <br>
 
 ## 产品数据库配置：
-数据块配置在 application.yml 文件
+数据库配置在 application.yml 文件
 ```yaml
 datasource:
     type: com.alibaba.druid.pool.DruidDataSource
