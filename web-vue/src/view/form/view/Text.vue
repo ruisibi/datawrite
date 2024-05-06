@@ -20,7 +20,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -55,14 +55,15 @@
 			return h('div', {style:style}, comp.desc?comp.desc:"未设置文本内容");
 		},
 		mounted(){
-			
+
 		},
 		computed: {
 		},
-		methods: {	
-			
-		},
-		watch: {
+		methods: {
+			flush(){
+			  this.$forceUpdate();
+      }
+		},watch: {
 		},
 	}
 </script>

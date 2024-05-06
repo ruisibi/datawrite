@@ -19,7 +19,7 @@
             <el-input-number v-model="prop.precision" :min="0" size="mini" :precision="0" :max="4" @change="changevalue('precision')"></el-input-number>
           </el-form-item>
        </el-collapse-item>
-       
+
     </el-collapse>
   </el-form>
 </div>
@@ -36,24 +36,24 @@ export default {
     formBaseProp
   },
   props:{
-      
+
   },
   data(){
     return {
       activeName: "1",
       comp: null,
       prop:{
-        min:null,
-        max:null,
+        min:0,
+        max:999999,
         precision: 0
       },
       opts:{
-       
+
       }
     }
   },
   mounted(){
-    
+
   },
   computed: {
 
@@ -84,7 +84,7 @@ export default {
     },
   },
   watch: {
-    
+
   }
 }
 </script>

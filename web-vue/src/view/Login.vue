@@ -9,7 +9,7 @@
 		  <nav class="navbar navbar-static-top">
 			  <div class="navbar-header">
 					<img src="../assets/image/log3.png" class="img-responsive">
-				 
+
 			</div>
 		</nav>
 	  </div>
@@ -33,9 +33,9 @@
 							<el-form-item>
 								<el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登录</el-button>
 							</el-form-item>
-							
+
 							账号/密码：admin/123456
-							
+
 						</div>
 					</div>
 				</el-form>
@@ -45,7 +45,7 @@
 		<div align="center" class="bottomtxt">
 
 			<div class="txt" align="center">
-				 <a href='https://www.ruisitech.com' target="_blank">睿思BI</a> - <a href='https://www.ruisitech.com/ultimate.html' target="_blank">旗舰版</a> - <a href='https://www.ruisitech.com/productent.html' target="_blank">企业版</a>  - <a href='https://www.ruisitech.com/opensource.html' target="_blank">开源版</a> - <a href='https://www.ruisitech.com/yun.html' target="_blank">睿思云</a> - <a href='http://www.ruisibi.cn/book.htm' target="_blank">使用手册</a> - <a href='https://www.ruisitech.com/suggest.html' target="_blank">问题反馈</a> 
+				 <a href='https://www.ruisitech.com' target="_blank">睿思BI</a> - <a href='https://www.ruisitech.com/ultimate.html' target="_blank">旗舰版</a> - <a href='https://www.ruisitech.com/productent.html' target="_blank">企业版</a>  - <a href='https://www.ruisitech.com/opensource.html' target="_blank">开源版</a> - <a href='https://www.ruisitech.com/yun.html' target="_blank">睿思云</a> - <a href='http://www.ruisibi.cn/book.htm' target="_blank">使用手册</a> - <a href='https://www.ruisitech.com/suggest.html' target="_blank">问题反馈</a>
 			</div>
 				©成都睿思商智科技有限公司 2021 版权所有
 		</div>

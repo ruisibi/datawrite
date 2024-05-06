@@ -27,7 +27,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -39,7 +39,10 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
+      flush(){
+        this.$forceUpdate();
+      },
 			initDefVal(){
 				if(this.comp.defval){
 					this.name = utils.parserDefDate(this.comp.defval, this.getFmt());

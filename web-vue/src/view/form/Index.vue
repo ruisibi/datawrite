@@ -44,7 +44,7 @@
 						<el-table-column align="center" prop="tableName" label="对应表"></el-table-column>
 						<el-table-column align="center" prop="createDate" label="创建时间"></el-table-column>
 						<el-table-column align="center" prop="updateDate" label="更新时间"></el-table-column>
-						
+
 						<el-table-column align="center" prop="buildDate" label="最后构建时间"></el-table-column>
 						<el-table-column align="center" prop="id" label="操作" width="80">
 							<template slot-scope="scope">
@@ -63,7 +63,7 @@
 						:total="total">
 					</el-pagination>
 			  </div>
-			  
+
 		  </div>
       	</div>
 	  </div>
@@ -96,19 +96,19 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
 			loadDatas(){
 				let ts = this;
 				ajax({
 					type:"POST",
 					data:{page:ts.page, rows:ts.rows, cataId: this.cataId},
-					url:"form/list.action", 
+					url:"form/list.action",
 					success:function(resp){
 						ts.tableData = resp.rows;
 						ts.total = resp.total;
 					}
 				}, ts);
-			},	
+			},
 			selectme:function(a, b){
 				this.checked = a.id;
 			},
@@ -252,6 +252,7 @@
 						data:{id:id},
 						success:(resp)=>{
 							this.$notify.success("表构建成功。");
+              this.loadDatas();
 						}
 					}, this);
 				}

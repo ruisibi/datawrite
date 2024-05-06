@@ -26,7 +26,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -38,7 +38,10 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
+      flush(){
+        this.$forceUpdate();
+      },
 			initDefVal(){
 				if(this.comp.defval){
 					this.name = Number(this.comp.defval);

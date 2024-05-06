@@ -91,7 +91,7 @@ export default {
 
   },
   props:{
-      
+
   },
   data(){
     return {
@@ -118,7 +118,7 @@ export default {
     }
   },
   mounted(){
-    
+
   },
   computed: {
      ...mapState(["isMini"])

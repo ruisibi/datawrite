@@ -19,13 +19,13 @@
 							<li>数据审核</li>
 							<li>数据建模</li>
 							<li>统计分析</li>
+            <li>手机端填报</li>
 						</ul>
 						<div style="padding:10px 0px 30px 0px;">
 						<img src="../assets/image/introduce.png">
 						</div>
 						<button type="button" class="btn btn-primary btn-sm" @click="goto()">官方网站</button>
 						<button type="button" class="btn btn-primary btn-sm" @click="goto2()">睿思BI</button>
-					</p>
 			  </div>
 		  </div>
 

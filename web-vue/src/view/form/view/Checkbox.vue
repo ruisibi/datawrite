@@ -9,23 +9,23 @@
 			<template v-if="!comp.properties || !comp.properties.showType || comp.properties.showType == 'def'">
 				<el-checkbox-group v-model="name" size="mini">
 					<template v-for="item in datas">
-						<el-checkbox :key="item.id" :label="item.name">{{item.name}}</el-checkbox> 
+						<el-checkbox :key="item.id" :label="item.name">{{item.name}}</el-checkbox>
 						<br v-if="comp.properties && comp.properties.focesBr == true"/>
 					</template>
 				</el-checkbox-group>
 			</template>
-			<template v-if="comp.properties.showType == 'btn'">
+			<template v-if="comp.properties && comp.properties.showType == 'btn'">
 				<el-checkbox-group v-model="name" size="mini">
 					<template v-for="item in datas">
-						<el-checkbox-button :key="item.id" :label="item.name">{{item.name}}</el-checkbox-button> 
+						<el-checkbox-button :key="item.id" :label="item.name">{{item.name}}</el-checkbox-button>
 						<br v-if="comp.properties && comp.properties.focesBr == true"/>
 					</template>
 				</el-checkbox-group>
 			</template>
-			<template v-if="comp.properties.showType == 'border'">
+			<template v-if="comp.properties && comp.properties.showType == 'border'">
 				<el-checkbox-group v-model="name" size="mini">
 					<template v-for="item in datas">
-						<el-checkbox border="" :key="item.id" :label="item.name">{{item.name}}</el-checkbox> 
+						<el-checkbox border="" :key="item.id" :label="item.name">{{item.name}}</el-checkbox>
 						<br v-if="comp.properties && comp.properties.focesBr == true"/>
 					</template>
 				</el-checkbox-group>
@@ -54,7 +54,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -68,7 +68,11 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
+      flush(){
+        this.$forceUpdate();
+        this.initDatas();
+      },
 			initDefVal(){
 				if(this.comp.defval){
 					this.name = [this.comp.defval];

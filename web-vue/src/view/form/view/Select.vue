@@ -38,7 +38,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -52,10 +52,14 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
 			initDefVal(){
 				this.name = this.comp.defval;
 			},
+      flush(){
+			  this.initDatas();
+        this.$forceUpdate();
+      },
 			initDatas(){
 				if(this.comp.valuestype == 'static' && this.comp.options){
 					this.datas = this.comp.options;

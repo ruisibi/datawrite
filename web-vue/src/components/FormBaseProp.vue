@@ -20,13 +20,13 @@
               {{ comp && comp.matchCol ? comp.matchCol :"未设置" }}
             </div>
           </el-form-item>
-          <el-form-item label="文本位置：" label-width="145px">
+          <el-form-item label="文本位置：" label-width="145px" v-if="comp && comp.type != 'text'">
              <el-radio-group v-model="prop.align" @change="changevalue('align')">
                 <el-radio-button label="left"></el-radio-button>
                 <el-radio-button label="right"></el-radio-button>
              </el-radio-group>
           </el-form-item>
-          <el-form-item label="文本宽度：" label-width="120px">
+          <el-form-item label="文本宽度：" label-width="120px" v-if="comp && comp.type != 'text'">
             <el-input-number v-model="prop.labelWidth" :min="50" :max="500" @change="changevalue('labelWidth')"></el-input-number>
           </el-form-item>
           <el-form-item label="默认值：" label-width="100px" v-if="showDefval()">
@@ -38,7 +38,7 @@
           <el-form-item label="设为查询条件：" label-width="210px" v-if="showSearch()">
             <el-switch v-model="prop.searchCol" @change="changevalue('searchCol')"></el-switch>
           </el-form-item>
-      
+
   </el-form>
 </div>
 </template>
@@ -50,10 +50,10 @@ import { writeCompType } from '@/view/form/Utils'
 
 export default {
   components:{
-    
+
   },
   props:{
-      
+
   },
   data(){
     return {
@@ -67,12 +67,12 @@ export default {
         searchCol:false,
       },
       opts:{
-       
+
       }
     }
   },
   mounted(){
-    
+
   },
   computed: {
 
@@ -165,7 +165,7 @@ export default {
     }
   },
   watch: {
-    
+
   }
 }
 </script>

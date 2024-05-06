@@ -8,14 +8,14 @@
 		<template v-if="datas.length > 0" >
 			<template v-if="!comp.properties || !comp.properties.showType || comp.properties.showType == 'def'">
 				<template v-for="item in datas">
-					<el-radio :key="item.id" v-model="name" :label="item.name">{{item.name}}</el-radio> 
+					<el-radio :key="item.id" v-model="name" :label="item.name">{{item.name}}</el-radio>
 					<br v-if="comp.properties && comp.properties.focesBr == true"/>
 				</template>
 			</template>
 			<template v-if="comp.properties && comp.properties.showType == 'btn'">
 				<el-radio-group v-model="name" size="mini" >
 				<template v-for="item in datas">
-					<el-radio-button :key="item.id" :label="item.name">{{item.name}}</el-radio-button> 
+					<el-radio-button :key="item.id" :label="item.name">{{item.name}}</el-radio-button>
 					<br v-if="comp.properties && comp.properties.focesBr == true"/>
 				</template>
 				</el-radio-group>
@@ -23,7 +23,7 @@
 			<template v-if="comp.properties && comp.properties.showType == 'border'">
 				<el-radio-group v-model="name" size="mini" >
 				<template v-for="item in datas">
-					<el-radio border :key="item.id" :label="item.name">{{item.name}}</el-radio> 
+					<el-radio border :key="item.id" :label="item.name">{{item.name}}</el-radio>
 					<br v-if="comp.properties && comp.properties.focesBr == true"/>
 				</template>
 				</el-radio-group>
@@ -40,6 +40,7 @@
 	import $ from 'jquery'
 
 	export default {
+	  name:"form-radio",
 		props:{
 			pageInfo: {
 				type: Object,
@@ -52,7 +53,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -66,7 +67,11 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
+      flush(){
+        this.initDatas();
+        this.$forceUpdate();
+      },
 			initDatas(){
 				if(this.comp.valuestype == 'static' && this.comp.options){
 					this.datas = this.comp.options;

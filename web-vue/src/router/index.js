@@ -28,6 +28,8 @@ import VerifyDataList from '@/view/verify/DataList'
 import CubeList from '@/view/model/CubeList'
 import ReportDesign from '@/view/bireport/ReportDesign'
 import BireportPrint from '@/view/bireport/Print'
+import MobileIndex from '@/view/mobile/Index'
+import MobileDataList from '@/view/mobile/DataList'
 
 Vue.use(Router)
 
@@ -129,9 +131,18 @@ let router = new Router({
       name: 'bireportPrint',
       component: BireportPrint
     },
-
+    {
+      path:"/mobile/Index",
+      name:"mobileIndex",
+      component: MobileIndex,
+    },
+    {
+      path: "/mobile/DataList",
+      name:  'mobileDataList',
+      component: MobileDataList
+    }
   ],
-  
+
 })
 
 router.beforeEach((to, from, next) => {

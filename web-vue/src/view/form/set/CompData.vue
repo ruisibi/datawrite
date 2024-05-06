@@ -91,7 +91,7 @@ export default {
 
   },
   props:{
-      
+
   },
   data(){
     return {
@@ -118,7 +118,7 @@ export default {
     }
   },
   mounted(){
-    
+
   },
   computed: {
      ...mapState(["isMini"])
@@ -190,6 +190,11 @@ export default {
              this.show = false;
              this.$parent.setUpdate();
            }
+         }
+         let o = this.$parent.$refs['c_' + this.comp.id][0];
+         let zj = o.$refs['v_'+this.comp.id];
+         if(zj && zj.flush){
+           zj.flush();
          }
        });
      },

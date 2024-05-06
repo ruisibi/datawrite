@@ -47,7 +47,7 @@
 			}
 		},
 		components: {
-			 
+
 		},
 	    data(){
 			return {
@@ -66,7 +66,10 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
+      flush(){
+        this.$forceUpdate();
+      },
 			getName(){
 				return this.tempId;
 			},

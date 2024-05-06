@@ -4,7 +4,6 @@
  * https://www.ruisitech.com/licenses/index.html
  -->
 <template>
-  <div class="wrapper-content">
     <div class="ibox">
       <div class="ibox-title" style="padding:10px;height:38px;">
         {{table.tableNote}}
@@ -18,9 +17,7 @@
             <button type="button" class="btn btn-outline btn-default" @click="delData()">
               <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
             </button>
-            <button type="button" @click="downtemplate()" class="btn btn-outline btn-default" >下载模板</button>
-            <button type="button" @click="impData()" class="btn btn-outline btn-default" >批量导入</button>
-          </div>
+         </div>
            <searchParam ref="searchParamForm" :table="table" />
           <el-table :data="tableData" border style="width: 100%" header-row-class-name="tableHeadbg" @selection-change="handleSelectionChange">>
 						<el-table-column label="" width="45" fixed="left" type="selection" :selectable="canSelect">
@@ -43,22 +40,19 @@
 						:page-sizes="[10, 20, 50, 100]"
 						:current-page="page"
 						:page-size="rows"
-						layout="total, sizes, prev, pager, next, jumper"
+						layout="total, prev, pager, next, jumper"
 						:total="total">
 					</el-pagination>
       </div>
+      <dataWrite ref="dataWriteForm" />
     </div>
-    <dataWrite ref="dataWriteForm" />
-    <batchImp ref="batchImpForm"></batchImp>
-  </div>
 </template>
 
 <script>
 import { baseUrl, ajax, formatDate } from "@/common/biConfig";
 import $ from "jquery";
-import dataWrite from './DataWrite'
-import batchImp from './BatchImp'
-import searchParam from './SearchParam'
+import dataWrite from '@/view/write/DataWrite'
+import searchParam from '@/view/write/SearchParam'
 
 export default {
   data() {
@@ -73,7 +67,7 @@ export default {
     }
   },
   components: {
-	  dataWrite, batchImp, searchParam
+	  dataWrite,  searchParam
 	},
   mounted() {
     this.getTable();
@@ -97,7 +91,7 @@ export default {
        return tid;
      },
      goback(){
-      this.$router.push({path:"/write/TableList", query:{}});
+       this.$router.back();
      },
      loadDatas(){
        let table = this.table;
@@ -189,12 +183,6 @@ export default {
         return true;
       }
     },
-    downtemplate(){
-      location.href= baseUrl + 'write/ExportTemplate.action?tableId=' + this.getTableId();
-    },
-    impData(){
-      this.$refs['batchImpForm'].showDailog(this.getTableId());
-    }
   },
   watch: {},
   beforeRouteLeave(to, from, next) {
