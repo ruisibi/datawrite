@@ -83,8 +83,12 @@ public class WriteSaveService extends FormBaseService {
                             ps.setString(idx, val.toString());
                         }
                     } else if ("Date".equals(type)) {
+                        String fmt = "yyyy-MM-dd";  //默认日期格式
                         JSONObject prop = comp.getJSONObject("properties");
-                        SimpleDateFormat sdf = new SimpleDateFormat(prop.getString("fmt"));
+                        if(prop != null &&  prop.getString("fmt") != null){
+                            fmt = prop.getString("fmt");
+                        }
+                        SimpleDateFormat sdf = new SimpleDateFormat(fmt);
                         try {
                             ps.setDate(idx, new java.sql.Date(sdf.parse(val.toString()).getTime()));
                         } catch (ParseException e) {
@@ -163,8 +167,12 @@ public class WriteSaveService extends FormBaseService {
                             ps.setString(idx, val.toString());
                         }
                     } else if ("Date".equals(type)) {
+                        String fmt = "yyyy-MM-dd";  //默认日期格式
                         JSONObject prop = comp.getJSONObject("properties");
-                        SimpleDateFormat sdf = new SimpleDateFormat(prop.getString("fmt"));
+                        if(prop != null &&  prop.getString("fmt") != null){
+                            fmt = prop.getString("fmt");
+                        }
+                        SimpleDateFormat sdf = new SimpleDateFormat(fmt);
                         try {
                             ps.setDate(idx, new java.sql.Date(sdf.parse(val.toString()).getTime()));
                         } catch (ParseException e) {

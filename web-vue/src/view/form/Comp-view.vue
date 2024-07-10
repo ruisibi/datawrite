@@ -16,7 +16,7 @@
 							<div v-html="writeUpload(col.val)"></div>
 						</template>
 						<template v-else>
-							{{col.val}}	
+							{{getVal()}}
 						</template>
 					</el-form-item>
 				</el-form>
@@ -34,10 +34,10 @@
 								<radioView :ref="'v_' + comp.id" :pageInfo=pageInfo :comp="comp"></radioView>
 							</template>
 							<template v-if="comp.type === 'inputNumber'">
-								<el-input-number v-model="col.val" 
-								:max="comp.properties?comp.properties.max:null" 
-								:min="comp.properties?comp.properties.min:null" 
-								:precision="comp.properties?comp.properties.precision:null" 
+								<el-input-number v-model="col.val"
+								:max="comp.properties?comp.properties.max:null"
+								:min="comp.properties?comp.properties.min:null"
+								:precision="comp.properties?comp.properties.precision:null"
 								:step="1" size="mini"></el-input-number>
 							</template>
 							<template v-if="comp.type === 'checkbox'">
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-	import {baseUrl, ajax} from '@/common/biConfig'
+	import {baseUrl, ajax, formatDate} from '@/common/biConfig'
 	import $ from 'jquery'
 	import checkboxView from './view/Checkbox'
 	import radioView from './view/Radio'
@@ -93,7 +93,7 @@
 				type:Boolean,
 				required: false,
 				default: false,
-			}, 
+			},
 			model:{  //组件所处模式，（design设计模式，edit编辑模式）
 				type:String,
 				required: false,
@@ -137,7 +137,7 @@
 		},
 		computed: {
 		},
-		methods: {	
+		methods: {
 			initDefVal(){
 				this.col.val = this.comp.defval;
 			},
@@ -156,7 +156,20 @@
 					return s.join("");
 				}
 				return "";
-			}
+			},
+      getVal(){
+			  let v = this.col.val;
+			  if(this.comp.type == 'datepicker'){
+			    let prop = this.comp.properties;
+			    let fmt = 'yyyy-MM-dd';
+			    if(prop){
+			      fmt = prop.fmt;
+          }
+          var date = new Date(v);
+			    return formatDate(date, fmt);
+        }
+			  return v;
+      },
 		},
 		watch: {
 		},
