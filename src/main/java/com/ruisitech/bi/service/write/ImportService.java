@@ -197,7 +197,7 @@ public class ImportService {
                 titles.add(c.getStringCellValue());
             }
             List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
-            for(int i=3; i<rownums; i++) {  //数据从第三行开始
+            for(int i=3; i<=rownums; i++) {  //数据从第三行开始
                 Map<String, Object> data = new HashMap<String, Object>();
                 Row row = st.getRow(i);
                 for(int j=0; j<row.getLastCellNum(); j++) {
